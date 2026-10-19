@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mkdiis"
+version = "0.1.0"
+description = "Model-kernel corrected DIIS: cheap response information for the Roothaan step (PySCF)"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Fang Sun"},
+    {name = "Miranda Yang Li"},
+    {name = "Hekai Cheng"},
+    {name = "Jason Cong"},
+    {name = "Yizhou Sun"},
+]
+dependencies = ["numpy>=1.22", "scipy>=1.12", "pyscf>=2.13"]
+
+[project.optional-dependencies]
+viz = ["matplotlib>=3.5", "pillow"]
+test = ["pytest"]
+
+[tool.setuptools]
+packages = ["mkdiis"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

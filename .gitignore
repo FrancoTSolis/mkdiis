@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.DS_Store
+*.part
+
+# rendered animations and figures (python animations/*.py); the README GIFs are in media/
+animations/out/
+# benchmark records (python benchmarks/bench.py --out results/...)
+results/
