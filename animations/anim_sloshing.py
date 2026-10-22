@@ -67,7 +67,7 @@ def schedule(n_steps, timing, start_hold, end_hold):
 
 
 class ChainRow:
-    """A strip of colored units (the molecule) above a bar chart of the charge per unit."""
+    """A strip of colored circles, one per bonded pair of atoms, above a bar chart of the charge per pair."""
 
     def __init__(self, fig, strip_box, bar_box, ref, ylim=0.1, vmax=0.03):
         self.n, self.ylim = len(ref), ylim
@@ -93,7 +93,7 @@ class ChainRow:
         ax.set_yticklabels([f"{-ylim:g}", "0", f"+{ylim:g}"])
         ax.set_xticks([])
         ax.spines["bottom"].set_visible(False)
-        ax.set_ylabel("charge per unit\n(electrons)", fontsize=11.5)
+        ax.set_ylabel("charge per pair\n(electrons)", fontsize=11.5)
         self.clip_up = ax.scatter([], [], marker="^", s=46, color=INK, zorder=5, clip_on=False)
         self.clip_dn = ax.scatter([], [], marker="v", s=46, color=INK, zorder=5, clip_on=False)
         self.ax_bar = ax
@@ -198,8 +198,8 @@ def make_problem(ch, ref, data):
     fig = plt.figure(figsize=SIZE)
     fig.text(0.05, 0.935, "Charge sloshing: why SCF iterations bounce back and forth", fontsize=23,
              fontweight="bold", color=INK)
-    fig.text(0.05, 0.893, "Toy model: a 60-atom conjugated chain in a weak field (like the macrodipole of a helix).  "
-             "Plain SCF steps (Roothaan), no DIIS.", fontsize=13, color=MUTED)
+    fig.text(0.05, 0.893, "Toy model: a conjugated chain of 60 atoms in a weak field, drawn as 30 bonded pairs (one circle per pair).  "
+             "Plain SCF steps, no DIIS.", fontsize=13, color=MUTED)
     row = ChainRow(fig, [X0, 0.69, W, 0.1], [X0, 0.38, W, 0.28], ref)
     field_arrow(fig, X0 + 0.01, X0 + 0.15, 0.825, "weak field pulls electrons to the left")
     step_txt = fig.text(X0 + W, 0.825, "", ha="right", va="center", fontsize=15, fontweight="bold", color=INK)
@@ -247,7 +247,8 @@ def make_before_after(ch, ref, data):
 
     fig = plt.figure(figsize=SIZE)
     fig.text(0.05, 0.945, "Before and after the model-kernel correction", fontsize=23, fontweight="bold", color=INK)
-    fig.text(0.05, 0.905, "Same toy chain, same starting guess, same final answer. Only the step differs.",
+    fig.text(0.05, 0.905, "Same toy chain (one circle per bonded pair of atoms), same starting guess, same final answer. "
+             "Only the step differs.",
              fontsize=13, color=MUTED)
     rows, status, notes = [], [], []
     for j, (name, sub, col) in enumerate((

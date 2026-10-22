@@ -17,6 +17,8 @@ model, the figures and the animations of the paper
 
 **The problem.** A toy model of a long conjugated molecule (a chain of 60 sites in a weak field) iterated with
 plain Roothaan steps: each step over-corrects, and the charge swings from end to end with a growing amplitude.
+Each circle is one strongly bonded pair of sites, so the 60 sites appear as 30 circles; adding up the charge of a pair
+removes the alternation of the charge within it, which is not part of the sloshing.
 
 ![Charge sloshing in plain Roothaan iterations](media/sloshing_problem.gif)
 
@@ -156,7 +158,7 @@ cd animations
 python anim_sloshing.py        # toy chain: out/sloshing_problem.mp4, out/sloshing_before_after.mp4
 python real_figure.py          # octacene, from data/trace_acene8.npz (recompute with: python real_trace.py acene:8)
 python helix_figure.py         # the helix, from bench.py --trace records in data/
-python paper_fig_sloshing.py   # Figure 2 of the paper
+python paper_figs.py           # Figures 2 and 3 of the paper: static versions of these animations
 python sloshing_static.py      # space–iteration maps of the toy chain
 ./make_gifs.sh                 # the GIFs above, in media/
 ```
